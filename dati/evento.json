@@ -1,1 +1,7 @@
-{}
+{
+    "nome_evento": "Festa Estiva 2025",
+    "data": "2025-06-15",
+    "ora": "21:00",
+    "luogo": "Club XYZ",
+    "locandina": "link_alla_locandina.jpg"
+}
