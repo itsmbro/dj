@@ -15,17 +15,27 @@ for r in richieste:
 # Modifica evento
 st.subheader("📅 Prossimo evento")
 evento = carica_dati("dati/evento.json")
+
+# Non usare evento[0], dato che è un dizionario
 if evento:
-    evento = evento[0]
+    nome_evento = evento["nome"]
+    data_evento = evento["data"]
+    ora_evento = evento["ora"]
+    luogo_evento = evento["luogo"]
+    locandina_evento = evento["locandina"]
 else:
-    evento = {"nome": "", "data": "", "luogo": "", "locandina": ""}
+    nome_evento = ""
+    data_evento = ""
+    ora_evento = ""
+    luogo_evento = ""
+    locandina_evento = ""
 
 with st.form("Modifica Evento"):
-    nome = st.text_input("Nome evento", evento["nome"])
+    nome = st.text_input("Nome evento", nome_evento)
     data = st.date_input("Data", value=datetime.today())
     ora = st.time_input("Ora")
-    luogo = st.text_input("Luogo", evento["luogo"])
-    locandina = st.text_input("URL Locandina", evento["locandina"])
+    luogo = st.text_input("Luogo", luogo_evento)
+    locandina = st.text_input("URL Locandina", locandina_evento)
     invia = st.form_submit_button("Aggiorna")
 
     if invia:
@@ -35,7 +45,7 @@ with st.form("Modifica Evento"):
             "luogo": luogo,
             "locandina": locandina
         }
-        salva_dati("dati/evento.json", [nuovo_evento])
+        salva_dati("dati/evento.json", nuovo_evento)  # Salva come dizionario
         st.success("Evento aggiornato!")
 
 # Playlist
