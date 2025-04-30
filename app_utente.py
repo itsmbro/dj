@@ -22,8 +22,9 @@ if menu == "Richiedi canzone":
 elif menu == "Prossimo evento":
     st.header("📅 Prossimo evento")
     evento = carica_dati("dati/evento.json")
+
+    # Non usare evento[0], dato che è un dizionario
     if evento:
-        evento = evento[0]
         st.subheader(evento["nome"])
         st.write(f"📍 {evento['luogo']}")
         st.write(f"🕒 {evento['data']}")
